@@ -1,20 +1,26 @@
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
 </script>
 
 <template>
   <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
+    <nav class="navbar">
+      <router-link  class="navbar-item" to="/">Home</router-link>
+      <router-link class="navbar-item" to="/pokedex">Pokedex</router-link>
+    </nav>
+    <router-view></router-view>
   </div>
-  <HelloWorld msg="F" />
 </template>
 
 <style scoped>
+
+.navbar-item{
+  margin: 10px;
+}
+.navbar{
+  position: absolute;
+  top:0;
+  left: 10%;
+}
 .logo {
   height: 6em;
   padding: 1.5em;
