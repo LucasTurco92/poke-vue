@@ -1,28 +1,16 @@
 
-<script>
-import { ref,computed } from "vue";
+<script setup lang="ts">
+import { ref, computed,watch } from "vue";
 import { getRandomNumber } from '../utils/getRandomNumber'
+import store from '../store.js'
 const count = ref(10);
 const doubleCount = computed(() => count.value * 2);
-const src = ref();
+const pokeNumber = computed(() => store.getters.pokeNumber)
+const randomNumber = ref(getRandomNumber(1, 251));
+const srcPoke = computed(() => `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokeNumber.value}.svg`);
 
-export default {
-  setup() {
-    const doubleCount = computed(() => count.value * 2);
-    const randomNumber = ref(getRandomNumber(1, 251));
-    const srcPoke = computed(() => `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${randomNumber.value}.svg`);
-    
-    const randomPoke = () => {
-      randomNumber.value = getRandomNumber(1, 251);
-    }
-
-    return {
-      doubleCount,
-      randomNumber,
-      randomPoke,
-      srcPoke
-    }
-  },
+const randomPoke = () => {
+  randomNumber.value = getRandomNumber(1, 251);
 }
 </script>
 
@@ -90,7 +78,7 @@ export default {
   <button @click="randomPoke" class="rnd-button">
     {{ randomNumber }}
   </button>
-  <div class="count"> {{ doubleCount }}</div>
+  <div class="count">pokeNumber: {{ pokeNumber }}</div>
 </template>
 <style scoped>
 
